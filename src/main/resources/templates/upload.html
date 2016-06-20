@@ -9,6 +9,10 @@
     <!-- Le styles -->
     <link rel='stylesheet' href='/css/fileinput.min.css'/>
     <link rel='stylesheet' href='webjars/bootstrap/3.3.6/css/bootstrap.min.css'/>
+    <style>
+        .result-text {width:100%}
+        .resutl-first{margin-top: 20px;}
+    </style>
 </head>
 
 <body>
@@ -17,26 +21,20 @@
     <div class="page-header">
         <h1>Upload a pdf file</h1>
     </div>
-    <form enctype="multipart/form-data">
-        <input id="file-upload" class="file" type="file" multiple="false" data-min-file-count="1"/>
+    <form id="upload-file-form" enctype="multipart/form-data" action="upload" method="post">
+        <input id="file-upload" class="file" type="file" name="uploadfile" multiple="false" data-min-file-count="1"/>
         <br/>
-        <button type="submit" class="btn btn-primary">开始转换</button>
+        <button type="btn" class="btn btn-primary upload-btn">开始转换</button>
         <button type="reset" class="btn btn-default">重新上传</button>
     </form>
+    <div id="progess_results" class="result-text resutl-first"></div>
+    <div id="working_results" class="result-text"></div>
     <br/>
 </div>
 
 <script type="text/javascript" src="/webjars/jquery/1.11.3/jquery.js"></script>
 <script type="text/javascript" src="/js/fileinput.min.js"></script>
 <script type='text/javascript' src='/webjars/bootstrap/3.3.6/js/bootstrap.min.js'></script>
-<script type="text/javascript">
-   $(document).ready(function() {
-        $("#file-upload").fileinput({
-            'showPreview' : false,
-            'allowedFileExtensions' : ['pdf'],
-            'elErrorContainer': '#errorBlock'
-        });
-   });
-</script>
+<script type="text/javascript" src="/js/upload.js"></script>
 </body>
 </html>
