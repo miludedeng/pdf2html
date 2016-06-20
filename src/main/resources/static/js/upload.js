@@ -31,6 +31,7 @@
     }
 
     function dealProcess(){
+        $(".btn").each(function(){$(this).addClass("disabled")});
         var timer = setInterval(function(){
             $.ajax({
                 url: "/process",
@@ -46,8 +47,18 @@
                             if(line.startsWith("Working")){
                                 $("#working_results").html("<p>"+line+"</p>");
                             }
-                            if(!timer){
-                                clearInterval(timer);
+                            if(line.startsWith("Working")){
+                                var linePart = line.substr(9).split("/");
+                                if(linePart[0]==linePart[1]){
+                                     clearInterval(timer);
+                                     $.ajax({
+                                         url: "/getlink",
+                                         cache: false,
+                                         success: function(response){
+                                            $("#result_link").html("<a target='_blank' href='http://www.cafetime.cc:8080/"+response+"'>点击查看转换结果</a>");
+                                         }
+                                     });
+                                 }
                             }
                         }
                     }

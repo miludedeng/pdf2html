@@ -16,5 +16,6 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/");
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/upload");
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/process");
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/getlink");
     }
 }

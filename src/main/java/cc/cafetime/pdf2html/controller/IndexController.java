@@ -39,7 +39,7 @@ public class IndexController {
             final String oldFilename = uploadfile.getOriginalFilename();
             String fileName = String.valueOf(new Date().getTime());
             String fileFullName = fileName + ".pdf";
-            String directory = "/Users/steven/Desktop/pdf/uploads";
+            String directory = "/web/pdf/uploads";
             final String filepath = Paths.get(directory, fileFullName).toString();
             final String destpath = Paths.get(directory, fileName).toString();
             new File(destpath).mkdirs();
@@ -55,6 +55,7 @@ public class IndexController {
             };
             t.start();
             session.setAttribute("fileName", oldFilename);
+            session.setAttribute("link",  fileName + "/" + fileName + ".html");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -72,4 +73,12 @@ public class IndexController {
         session.setAttribute("process", "");
         return process;
     }
+
+    @RequestMapping(value = "/getlink", method = RequestMethod.GET)
+    @ResponseBody
+    public String getlink(final HttpSession session) {
+        String link = (String) session.getAttribute("link");
+        return link;
+    }
 }
+
