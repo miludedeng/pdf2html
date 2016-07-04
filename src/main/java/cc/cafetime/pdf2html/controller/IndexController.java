@@ -56,7 +56,6 @@ public class IndexController {
             t.start();
             session.setAttribute("fileName", oldFilename);
             session.setAttribute("link",  fileName + "/" + fileName + ".html");
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
